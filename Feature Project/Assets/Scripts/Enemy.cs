@@ -12,14 +12,17 @@ public class Enemy : MonoBehaviour
     public float enemySpeed;
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
-    public GameObject Player;
-    private Transform Target = GameObject.FindWithTag("Player").transform;
+    private GameObject Player;
+    private Transform Target;
     public float enemyATKTime;
     private float lastEnemyATK;
+    private Rigidbody enemyRB;
     private void Awake()
     {
         currentEnemyHP = maxEnemyHP;
         Player = GameObject.FindGameObjectWithTag("Player");
+        Target = GameObject.FindWithTag("Player").transform;
+        enemyRB = GetComponent<Rigidbody>();
     }
 
     public void FixedUpdate()
@@ -44,11 +47,11 @@ public class Enemy : MonoBehaviour
 
     public void EnemyAim()
     {
-        enemyPos = transform.position;
 
-        transform.LookAt(Target);
-
-        transform.position = enemyPos;
+        Vector3 targetDirection = Target.position - transform.position;
+        float enemyRotPos = enemySpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, enemyRotPos, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
 
     }    
 
