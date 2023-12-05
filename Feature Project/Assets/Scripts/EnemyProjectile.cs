@@ -11,7 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     private void Awake()
     {
         bulletRB = GetComponent<Rigidbody>();
-        bulletRB.velocity = transform.position * bulletSpeed;
+        bulletRB.velocity = -transform.forward * bulletSpeed;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -22,6 +22,7 @@ public class EnemyProjectile : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
+            Destroy(this.gameObject);
             KokomiController.instance.currentHealth -= Enemy.instance.enemyDamage;
         }
     }
