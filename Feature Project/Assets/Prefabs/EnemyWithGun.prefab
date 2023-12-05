@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 6613456214710372499}
   - component: {fileID: 2615456716859194457}
   - component: {fileID: -268035535490101459}
+  - component: {fileID: 7799222005885638768}
   m_Layer: 0
   m_Name: EnemyWithGun
   m_TagString: Enemy
@@ -241,3 +242,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &7799222005885638768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872836453265293438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d423feff6827c4eb5bc0784660e1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnemyHP: 10000
+  currentEnemyHP: 0
+  enemyDamage: 500
+  enemyPos: {x: 0, y: 0, z: 0}
+  enemySpeed: 0
+  projectileSpawn: {fileID: 4467365266798188824}
+  projectilePrefab: {fileID: 8104093641016509801, guid: 7bfc84eb49224524ebd71a21c2d1da8f,
+    type: 3}
+  Player: {fileID: 0}
+  Target: {fileID: 0}
+  enemyATKTime: 1

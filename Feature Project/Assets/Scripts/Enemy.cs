@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
     public GameObject Player;
-    public Transform Target;
+    private Transform Target = GameObject.FindWithTag("Player").transform;
     public float enemyATKTime;
     private float lastEnemyATK;
     private void Awake()
@@ -46,14 +46,21 @@ public class Enemy : MonoBehaviour
     {
         enemyPos = transform.position;
 
-        Vector3 targetDirection = Target.position - transform.position;
-
-        Vector3 focusDirection = Vector3.RotateTowards(transform.forward, targetDirection, enemySpeed * Time.deltaTime, 0.0f);
+        transform.LookAt(Target);
 
         transform.position = enemyPos;
 
-        transform.rotation = Quaternion.LookRotation(focusDirection);
     }    
+
+    public void EnemyShoot()
+    {
+        if (Time.time - lastEnemyATK < enemyATKTime)
+        {
+            return;
+        }
+        lastEnemyATK = Time.time;
+        Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity);
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
