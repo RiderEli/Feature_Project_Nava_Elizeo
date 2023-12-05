@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,19 +11,46 @@ public class Enemy : MonoBehaviour
     public Vector3 enemyPos;
     public float enemySpeed;
     public GameObject projectilePrefab;
+    public GameObject Player;
+    public Transform Target;
     private void Awake()
     {
-        currentEnemyHP = maxEnemyHP;        
+        currentEnemyHP = maxEnemyHP;
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
+    public void FixedUpdate()
     {
-        Debug.Log("Enemy HP:" + currentEnemyHP + "/" + maxEnemyHP);
         if (currentEnemyHP < 0)
         {
-            currentEnemyHP = 0;
+            Destroy(gameObject);
         }
     }
+    public virtual void Update()
+    {
+      //This is the override script for inheritance classes.   
+    }
+    public void EnemyMove()
+    {
+        enemyPos = transform.position;
+
+        enemyPos = Vector3.MoveTowards(this.transform.position, Player.transform.position, enemySpeed * Time.deltaTime);
+
+        transform.position = enemyPos;
+    }
+
+    public void EnemyAim()
+    {
+        enemyPos = transform.position;
+
+        Vector3 targetDirection = Target.position - transform.position;
+
+        Vector3 focusDirection = Vector3.RotateTowards(transform.forward, targetDirection, enemySpeed * Time.deltaTime, 0.0f);
+
+        transform.position = enemyPos;
+
+        transform.rotation = Quaternion.LookRotation(focusDirection);
+    }    
 
     public void OnCollisionEnter(Collision collision)
     {
