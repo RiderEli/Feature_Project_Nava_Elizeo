@@ -12,6 +12,7 @@ TagManager:
   - Radius
   - Water
   - Pad
+  - Spawner
   layers:
   - Default
   - TransparentFX

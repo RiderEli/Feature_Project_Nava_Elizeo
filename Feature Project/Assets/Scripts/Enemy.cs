@@ -82,5 +82,9 @@ public class Enemy : MonoBehaviour
                 currentEnemyHP -= KokomiController.instance.buffedSkillDamage;
             }
         }
+        if (other.gameObject.tag == "Water")
+        {
+            Destroy(gameObject);
+        }
     }
 }
