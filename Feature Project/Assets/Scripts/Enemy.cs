@@ -10,9 +10,12 @@ public class Enemy : MonoBehaviour
     public int enemyDamage = 500;
     public Vector3 enemyPos;
     public float enemySpeed;
+    public Transform projectileSpawn;
     public GameObject projectilePrefab;
     public GameObject Player;
     public Transform Target;
+    public float enemyATKTime;
+    private float lastEnemyATK;
     private void Awake()
     {
         currentEnemyHP = maxEnemyHP;
