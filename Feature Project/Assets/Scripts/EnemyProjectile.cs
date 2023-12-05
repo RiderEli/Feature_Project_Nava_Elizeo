@@ -6,7 +6,7 @@ public class EnemyProjectile : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     private Rigidbody bulletRB;
-    public Enemy enemy;
+
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class EnemyProjectile : MonoBehaviour
         }
         if (other.gameObject.tag == "Player")
         {
-            KokomiController.instance.currentHealth -= enemy.enemyDamage;
+            KokomiController.instance.currentHealth -= Enemy.instance.enemyDamage;
         }
     }
 }
