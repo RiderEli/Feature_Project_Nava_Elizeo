@@ -668,6 +668,7 @@ MonoBehaviour:
   jellyRadius: {fileID: 8387972593548279465}
   jellyHealing: 0
   healTime: 1
+  healingNumber: {fileID: 0}
 --- !u!135 &4082976948809979898
 SphereCollider:
   m_ObjectHideFlags: 0

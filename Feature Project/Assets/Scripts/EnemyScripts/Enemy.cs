@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     private float lastEnemyATK;
     private Rigidbody enemyRB;
     static public Enemy instance;
+    public Text enemyHPText;
     private void Awake()
     {
         instance = this;
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     public void FixedUpdate()
     {
+        enemyHPText.text = "HP: " + currentEnemyHP.ToString() + "/" + maxEnemyHP.ToString();
         if (currentEnemyHP < 0)
         {
             Destroy(gameObject);
@@ -62,6 +65,16 @@ public class Enemy : MonoBehaviour
         {
             KokomiController.instance.currentHealth -= enemyDamage;
         }
+
+        if (collision.gameObject.tag == "Water")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "GroundUnderWater")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -81,10 +94,6 @@ public class Enemy : MonoBehaviour
             {
                 currentEnemyHP -= KokomiController.instance.buffedSkillDamage;
             }
-        }
-        if (other.gameObject.tag == "Water")
-        {
-            Destroy(gameObject);
         }
     }
 }

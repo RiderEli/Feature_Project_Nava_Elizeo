@@ -13,6 +13,9 @@ TagManager:
   - Water
   - Pad
   - Spawner
+  - Cooldown
+  - Healing
+  - GroundUnderWater
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,7 @@ public class Jellyfish : MonoBehaviour
     private IEnumerator JellyHealActive()
     {
         yield return new WaitForSeconds(healTime);
+
         jellyHealing = true;
     }
 
@@ -45,6 +46,8 @@ public class Jellyfish : MonoBehaviour
     {
         yield return new WaitForSeconds(healTime);
         jellyHealing = false;
+        KokomiController.instance.healingText.SetActive(false);
+        KokomiController.instance.buffedHealingText.SetActive(false);
     }
     public void OnTriggerEnter(Collider other)
     { 
@@ -53,10 +56,12 @@ public class Jellyfish : MonoBehaviour
             if (KokomiController.instance.ultimateActive)
             {
                 UltHeal();
+                KokomiController.instance.buffedHealingText.SetActive(true);
             }
             else
             {
                 Heal();
+                KokomiController.instance.healingText.SetActive(true);
             }
         }
     }

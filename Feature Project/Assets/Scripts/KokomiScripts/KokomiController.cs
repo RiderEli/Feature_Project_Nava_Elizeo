@@ -53,6 +53,10 @@ public class KokomiController : MonoBehaviour
     //Other Codes for the Feature
     public bool isJumping;
     private float lastFish;
+    public GameObject healingText;
+    public GameObject buffedHealingText;
+    public GameObject attackHealingText;
+    public bool ATKhealActive;
 
     private void Awake()
     {
@@ -66,10 +70,13 @@ public class KokomiController : MonoBehaviour
         ultimateActive = false;
         skillCooldown = false;
         ultimateCooldown = false;
+        ATKhealActive = false;
+        healingText.SetActive(false);
+        buffedHealingText.SetActive(false);
+        attackHealingText.SetActive(false);
     }
     void Start()
     {
-        currentHealth -= 20000;
         jellyfishSkill = GameObject.FindWithTag("Skill");
         KokomiControls.KokomiActions.Skill.started += _ => KokomiSkill();
         KokomiControls.KokomiActions.Ultimate.started += _ => KokomiUltimate();
@@ -137,6 +144,11 @@ public class KokomiController : MonoBehaviour
         {
             isJumping = false;
         }
+
+        if (collision.gameObject.tag == "GroundUnderWater")
+        {
+            isJumping = false;
+        }
     }
 
     public void JumpingState()
@@ -144,10 +156,16 @@ public class KokomiController : MonoBehaviour
         if (isJumping)
         {
             KokomiControls.KokomiActions.Attack.Disable();
+            //KokomiControls.KokomiActions.Skill.Disable();
+            //KokomiControls.KokomiActions.Ultimate.Disable();
+            KokomiControls.KokomiActions.Jump.Disable();
         }
         else
         {
             KokomiControls.KokomiActions.Attack.Enable();
+            //KokomiControls.KokomiActions.Skill.Enable();
+            //KokomiControls.KokomiActions.Ultimate.Enable();
+            KokomiControls.KokomiActions.Jump.Enable();
         }
         
     }
@@ -190,7 +208,8 @@ public class KokomiController : MonoBehaviour
     public IEnumerator SkillCooldownTime()
     {
         Debug.Log("The Skill is now on cooldown");
-        yield return new WaitForSeconds(20);
+        float skillcooldownTime = 20;
+        yield return new WaitForSeconds(skillcooldownTime);
         skillCooldown = false;
         Debug.Log("The Skill can now be used again");
         yield return null;
@@ -231,7 +250,8 @@ public class KokomiController : MonoBehaviour
     public IEnumerator UltCooldownTime()
     {
         Debug.Log("The Ultimate is now on cooldown");
-        yield return new WaitForSeconds(10);
+        float ultCooldownTime = 10;
+        yield return new WaitForSeconds(ultCooldownTime);
         ultimateCooldown = false;
         Debug.Log("The Ultimate can now be used again");
         yield return null;
