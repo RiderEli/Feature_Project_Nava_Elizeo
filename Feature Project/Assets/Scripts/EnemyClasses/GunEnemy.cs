@@ -6,7 +6,6 @@ public class GunEnemy : Enemy
 {
     public override void Update()
     {
-        EnemyAim();
         EnemyShoot();
     }
 }

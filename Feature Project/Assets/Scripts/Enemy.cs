@@ -45,15 +45,6 @@ public class Enemy : MonoBehaviour
         transform.position = enemyPos;
     }
 
-    public void EnemyAim()
-    {
-
-        Vector3 targetDirection = Target.position - transform.position;
-        float enemyRotPos = enemySpeed * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, enemyRotPos, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-
-    }    
 
     public void EnemyShoot()
     {
