@@ -6,12 +6,12 @@ public class EnemyProjectile : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     private Rigidbody bulletRB;
-    private Enemy enemy;
+    public Enemy enemy;
 
     private void Awake()
     {
         bulletRB = GetComponent<Rigidbody>();
-        bulletRB.velocity = transform.forward * bulletSpeed;
+        bulletRB.velocity = transform.position * bulletSpeed;
     }
 
     public void OnTriggerEnter(Collider other)

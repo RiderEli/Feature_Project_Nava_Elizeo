@@ -13,15 +13,15 @@ public class Enemy : MonoBehaviour
     public Transform projectileSpawn;
     public GameObject projectilePrefab;
     private GameObject Player;
-    private Transform Target;
     public float enemyATKTime;
     private float lastEnemyATK;
     private Rigidbody enemyRB;
+    static public Enemy instance;
     private void Awake()
     {
+        instance = this;
         currentEnemyHP = maxEnemyHP;
         Player = GameObject.FindGameObjectWithTag("Player");
-        Target = GameObject.FindWithTag("Player").transform;
         enemyRB = GetComponent<Rigidbody>();
     }
 
