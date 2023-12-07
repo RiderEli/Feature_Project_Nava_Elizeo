@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* [Nava, Elizeo]
+ * [December 7, 2023]
+ * [This is the code for the two Enemy spawners on the Feature Scene]
+ */
 public class EnemySpawner : MonoBehaviour
 {
+    //General Codes for the Spammer
     public GameObject movingEnemyPrefab;
     public GameObject gunEnemyPrefab;
     public Transform movingEnemySpawn;
+    
+    //These Bools are meant to be an alternative for inheritance, since the Spawner objects are not prefabs.
     public bool Spawner1;
     public bool Spawner2;
 

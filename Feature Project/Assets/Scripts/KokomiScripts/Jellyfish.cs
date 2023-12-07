@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* [Nava, Elizeo]
+ * [December 7, 2023]
+ * [This is the code for the Jellyfish that will be Spawned with Kokomi's Skill.]
+ */
 public class Jellyfish : MonoBehaviour
 {
     public Vector3 jellyfishPos;
@@ -53,6 +56,7 @@ public class Jellyfish : MonoBehaviour
     { 
         if (other.gameObject.tag == "Player")
         {
+            //This is the buffed healing effect that will be active if Kokomi activates her Ult/Elemental Skill.
             if (KokomiController.instance.ultimateActive)
             {
                 UltHeal();

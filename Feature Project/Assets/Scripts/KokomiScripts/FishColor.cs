@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* [Nava, Elizeo]
+ * [December 7, 2023]
+ * [This is the code for the Color of the Skill. This is mostly used for the Ultimate Ability/Elemental Burst. More Clarification can be found in the KokomiController script.]
+ */
 public class FishColor : MonoBehaviour
 {
     public int fishMatNum;

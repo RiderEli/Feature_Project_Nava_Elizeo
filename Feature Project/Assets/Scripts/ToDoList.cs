@@ -12,6 +12,6 @@ public class ToDoList : MonoBehaviour
      * 5. Create a body of water in the scene that will help demonstrate one of parts of her Ultimate. (DONE)
      * 6. Create Enemies by making a single class for demonstration on the skill set. (DONE)
      * 7. Create UI that is based on the healing, cooldown, damage, health, etc. (DONE)
-     * 8 (OPTIONAL). Add as many extra content as desired, also, ASK JEFF AND ZACH FOR HELP ON LITTLE DETAILS!!.
+     * 8 (OPTIONAL). Add as many extra content as desired, also, ASK JEFF AND ZACH FOR HELP ON LITTLE DETAILS!!. (DONE)
      */
 }

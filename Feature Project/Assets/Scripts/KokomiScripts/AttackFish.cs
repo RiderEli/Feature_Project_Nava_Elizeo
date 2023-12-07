@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* [Nava, Elizeo]
+ * [December 7, 2023]
+ * [This is the code for the Attack projectile.]
+ */
 public class AttackFish : MonoBehaviour
 {
     public float fishSpeed = 10f;
@@ -13,7 +16,7 @@ public class AttackFish : MonoBehaviour
     }
     private void Update()
     {
-        if (KokomiController.instance.ATKhealActive)
+        if (KokomiController.instance.atkHealActive)
         {
             StartCoroutine(ATKHealTime());
             KokomiController.instance.attackHealingText.SetActive(true);
@@ -27,7 +30,7 @@ public class AttackFish : MonoBehaviour
     {
         float healTime = 0.3f;
         yield return new WaitForSeconds(healTime);
-        KokomiController.instance.ATKhealActive = false;
+        KokomiController.instance.atkHealActive = false;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -39,10 +42,11 @@ public class AttackFish : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
+            //This is the attack healing effect that will be active if Kokomi activates her Ult/Elemental Skill.
             if (KokomiController.instance.ultimateActive)
             {
                 KokomiController.instance.currentHealth += KokomiController.instance.attackHealing;
-                KokomiController.instance.ATKhealActive = true;
+                KokomiController.instance.atkHealActive = true;
             }
         }
     }

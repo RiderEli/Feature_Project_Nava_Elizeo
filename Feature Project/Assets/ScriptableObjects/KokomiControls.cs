@@ -62,6 +62,15 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b61ace9d-c07e-46f7-b003-8492d0defabf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -106,6 +115,17 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9093598-5055-45a3-a6c2-0e6dfc85625c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -220,6 +240,7 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
         m_KokomiActions_Ultimate = m_KokomiActions.FindAction("Ultimate", throwIfNotFound: true);
         m_KokomiActions_Attack = m_KokomiActions.FindAction("Attack", throwIfNotFound: true);
         m_KokomiActions_Jump = m_KokomiActions.FindAction("Jump", throwIfNotFound: true);
+        m_KokomiActions_Pause = m_KokomiActions.FindAction("Pause", throwIfNotFound: true);
         // KokomiMovement
         m_KokomiMovement = asset.FindActionMap("KokomiMovement", throwIfNotFound: true);
         m_KokomiMovement_MovementInputs = m_KokomiMovement.FindAction("MovementInputs", throwIfNotFound: true);
@@ -288,6 +309,7 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_KokomiActions_Ultimate;
     private readonly InputAction m_KokomiActions_Attack;
     private readonly InputAction m_KokomiActions_Jump;
+    private readonly InputAction m_KokomiActions_Pause;
     public struct KokomiActionsActions
     {
         private @KokomiControls m_Wrapper;
@@ -296,6 +318,7 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
         public InputAction @Ultimate => m_Wrapper.m_KokomiActions_Ultimate;
         public InputAction @Attack => m_Wrapper.m_KokomiActions_Attack;
         public InputAction @Jump => m_Wrapper.m_KokomiActions_Jump;
+        public InputAction @Pause => m_Wrapper.m_KokomiActions_Pause;
         public InputActionMap Get() { return m_Wrapper.m_KokomiActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -317,6 +340,9 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IKokomiActionsActions instance)
@@ -333,6 +359,9 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IKokomiActionsActions instance)
@@ -411,6 +440,7 @@ public partial class @KokomiControls: IInputActionCollection2, IDisposable
         void OnUltimate(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IKokomiMovementActions
     {

@@ -16,6 +16,7 @@ TagManager:
   - Cooldown
   - Healing
   - GroundUnderWater
+  - Record
   layers:
   - Default
   - TransparentFX

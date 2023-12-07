@@ -4,8 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+/* [Nava, Elizeo]
+ * [December 7, 2023]
+ * [This is a UI script for the KokomiContainer object. Some of these codes using texts comes from Singletons in the KokomiController script]
+ */
 public class KokomiHPUI : MonoBehaviour
 {
+    //General Codes
     public Text healthText;
     public Text skillCooldownText;
     public Text ultCooldownText;
@@ -35,6 +40,7 @@ public class KokomiHPUI : MonoBehaviour
         UltActive();
     }
 
+    //These codes will make the UI display a timer and an indicator of whether a skill or ult/burst is activated or not.
     public void SkillActive()
     {
         if (KokomiController.instance.skillActive)
